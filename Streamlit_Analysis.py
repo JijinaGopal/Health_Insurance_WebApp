@@ -15,7 +15,7 @@ warnings.filterwarnings("ignore")
 
 @st.cache_data
 def load_csv():
-    df = pd.read_csv(r"C:\Users\Administrator\Desktop\Internship\Insurance_Operations\Health Insurance Claims\Streamlit_App\health_insurance_dataset.csv")
+    df = pd.read_csv("health_insurance_dataset.csv")
     return df
 
 df = load_csv()
