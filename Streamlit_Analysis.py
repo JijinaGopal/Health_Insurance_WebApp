@@ -151,11 +151,13 @@ In the health insurance sector, claims represent a major cost driver, requiring 
         Total_Claims_Amount=final_df['ClaimAmount'].sum()/1000000
         Average_Claim_Amount=final_df['ClaimAmount'].mean()
         Total_Providers=final_df['ProviderID'].count()
+        Total_Patients=final_df['PatientID'].count()
         Average_Patient_Age=df['PatientAge'].mean()
         Claim_Approval_Rate=(df[df['ClaimStatus']=='Approved'].shape[0]/final_df['ClaimID'].count())*100
         Claim_Denial_Rate=(df[df['ClaimStatus']=='Denied'].shape[0]/final_df['ClaimID'].count())*100
         Claim_Pending_Rate=(df[df['ClaimStatus']=='Pending'].shape[0]/final_df['ClaimID'].count())*100
         Income_vs_ClaimAmout_Correlation=df['PatientIncome'].corr(df['ClaimAmount'])
+        Total_Provider_Location=df['ProviderLocation'].nunique()
 
 
         col1, col2, col3 = st.columns(3)
@@ -168,15 +170,25 @@ In the health insurance sector, claims represent a major cost driver, requiring 
         col4, col5, col6 = st.columns(3)
         
         col4.metric("👥 Total Providers", Total_Providers)
-        col5.metric("👤 Average Patient Age",f"{Average_Patient_Age:,.0f}")
-        col6.metric("❌ Claim Deniel Rate",f"{Claim_Denial_Rate:,.2f}%")
+        col5.metric("👤 Total Patients",Total_Patients)
+        col6.metric("👤 Average Patient Age",f"{Average_Patient_Age:,.0f}")
 
 
         col7, col8, col9 = st.columns(3)
         
         col7.metric("✅ Claim Approved Rate", f"{Claim_Approval_Rate:,.2f}%")
         col8.metric("🔄 Claim Pending Rate",f"{Claim_Pending_Rate:,.2f}%")
-        col9.metric("💹 Income vs Claim Amount Correlation",f"{Income_vs_ClaimAmout_Correlation:,.2f}")
+        col9.metric("❌ Claim Deniel Rate",f"{Claim_Denial_Rate:,.2f}%")
+
+
+        
+        col10, col11, col12 = st.columns(3)
+
+        col10.metric("💹 Income vs Claim Amount Correlation",f"{Income_vs_ClaimAmout_Correlation:,.2f}")
+        col11.metric("👤 Total Provider Locations ",Total_Provider_Location)
+
+
+
 
 
 
